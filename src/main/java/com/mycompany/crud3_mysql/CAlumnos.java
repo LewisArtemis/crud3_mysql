@@ -9,5 +9,33 @@ package com.mycompany.crud3_mysql;
  * @author SENA
  */
 public class CAlumnos {
+    int codigo;
+    String nombreAlumnos;
+    String apellidoAlumnos;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombreAlumnos() {
+        return nombreAlumnos;
+    }
+
+    public void setNombreAlumnos(String nombreAlumnos) {
+        this.nombreAlumnos = nombreAlumnos;
+    }
+
+    public String getApellidoAlumnos() {
+        return apellidoAlumnos;
+    }
+
+    public void setApellidoAlumnos(String apellidoAlumnos) {
+        this.apellidoAlumnos = apellidoAlumnos;
+    }
+    
     
 }
