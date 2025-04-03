@@ -4,6 +4,10 @@
  */
 package com.mycompany.crud3_mysql;
 
+import java.sql.CallableStatement;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author SENA
@@ -37,5 +41,27 @@ public class CAlumnos {
         this.apellidoAlumnos = apellidoAlumnos;
     }
     
+    public void InsertarAlumno(JTextField paramNombres, JTextField paramApellidos) {
+        
+        setNombreAlumnos(paramNombres.getText());
+        setApellidoAlumnos(paramApellidos.getText());
+        
+        CConexion obetoConexion = new CConexion();
+        
+        String consulta = "insert into Alumnos (nombre, apellido) values (?,?);";
+        
+        try {
+            CallableStatement cs = obetoConexion.establecerConexion().prepareCall(consulta);
+            cs.setString(1, getNombreAlumnos());
+            cs.setString(2, getApellidoAlumnos());
+            
+            cs.execute();
+            
+            JOptionPane.showMessageDialog(null, "Se inserto correctamente el alumno");
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "No se inserto correctamente el alumno, error: " + e.toString());
+        }
+    }
     
 }
