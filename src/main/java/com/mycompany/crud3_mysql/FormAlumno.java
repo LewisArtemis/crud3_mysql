@@ -15,6 +15,11 @@ public class FormAlumno extends javax.swing.JFrame {
      */
     public FormAlumno() {
         initComponents();
+        CConexion objetoConexion = new CConexion();
+        objetoConexion.establecerConexion();
+        
+        CAlumnos objetoAlumnos = new CAlumnos();
+        objetoAlumnos.MostrarAlumnos(tbTotalAlumnos);
     }
 
     /**
@@ -39,7 +44,7 @@ public class FormAlumno extends javax.swing.JFrame {
         btnlimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbTotalAlumnos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +63,11 @@ public class FormAlumno extends javax.swing.JFrame {
         });
 
         btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
 
         btnmodificar.setText("Modificar");
 
@@ -121,7 +131,7 @@ public class FormAlumno extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Alumnos"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbTotalAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -132,7 +142,7 @@ public class FormAlumno extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbTotalAlumnos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,6 +188,13 @@ public class FormAlumno extends javax.swing.JFrame {
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+        // TODO add your handling code here:
+        CAlumnos objetoAlumnos = new CAlumnos();
+        objetoAlumnos.InsertarAlumno(txtnombre, txtapellido);
+        objetoAlumnos.MostrarAlumnos(tbTotalAlumnos);
+    }//GEN-LAST:event_btnguardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,7 +242,7 @@ public class FormAlumno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbTotalAlumnos;
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;

@@ -5,8 +5,14 @@
 package com.mycompany.crud3_mysql;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -64,4 +70,44 @@ public class CAlumnos {
         }
     }
     
+    public void MostrarAlumnos(JTable paramTotalAlumnos) {
+        CConexion objetoConexion = new CConexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableRowSorter<TableModel> OrdenarTabla = new TableRowSorter<TableModel>(modelo);
+        
+        paramTotalAlumnos.setRowSorter(OrdenarTabla);
+        
+        String sql="";
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombres");
+        modelo.addColumn("Apellidos");
+        paramTotalAlumnos.setModel(modelo);
+        
+        sql = "select * from Alumnos;";
+        
+        String[] datos = new String[3];
+        
+        Statement st;
+        
+        try {
+            st = objetoConexion.establecerConexion().createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next()) {
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                
+                modelo.addRow(datos);
+            }
+            
+            paramTotalAlumnos.setModel(modelo);
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "No se pudo mostrar los registros error: " + e.toString());
+        }
+    }
 }
