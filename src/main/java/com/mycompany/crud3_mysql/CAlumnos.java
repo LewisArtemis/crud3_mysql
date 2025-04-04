@@ -110,4 +110,23 @@ public class CAlumnos {
             JOptionPane.showMessageDialog(null, "No se pudo mostrar los registros error: " + e.toString());
         }
     }
+    
+    public void SeleccionarAlumno(JTable paramTableAlumnos, JTextField paramId, JTextField paramNombres, JTextField paramApellidos) {
+        
+        try {
+            
+            int fila = paramTableAlumnos.getSelectedRow();
+            
+            if (fila>= 0) {
+                paramId.setText((String) (paramTableAlumnos.getValueAt(fila, 0)));
+                paramNombres.setText((String) (paramTableAlumnos.getValueAt(fila, 1)));
+                paramApellidos.setText((String) (paramTableAlumnos.getValueAt(fila, 2)));
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+            }
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
 }
