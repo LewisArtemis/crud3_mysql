@@ -129,4 +129,49 @@ public class CAlumnos {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
+    
+    public void ModificarAlumnos(JTextField paramCodigo, JTextField paramNombres, JTextField paramApellidos){
+        
+        setCodigo(Integer.parseInt(paramCodigo.getText()));
+        setNombreAlumnos(paramNombres.getText());
+        setApellidoAlumnos(paramApellidos.getText());
+        
+        CConexion objetoConexion = new CConexion();
+        
+        String consulta = "UPDATE Alumnos SET alumnos.nombre = ?, alumnos.apellido =? WHERE alumnos.id=?;";
+        
+        try {
+            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
+            
+            cs.setString(1, getNombreAlumnos());
+            cs.setString(2, getApellidoAlumnos());
+            cs.setInt(3, getCodigo());
+            
+            cs.execute();
+            
+            JOptionPane.showMessageDialog(null, "Modificacion Exitosa");
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Error al modificar Alumno error: " + e.toString());
+        }
+    }
+    
+    public void EliminarAlumnos(JTextField paramCodigo) {
+        setCodigo(Integer.parseInt(paramCodigo.getText()));
+        
+        CConexion objetoConexion = new CConexion();
+        
+        String consulta = "delete from Alumnos where alumnos.id = ?;";
+        
+        try {
+            CallableStatement cs = objetoConexion.establecerConexion().prepareCall(consulta);
+            cs.setInt(1, getCodigo());
+            cs.execute();
+            
+            JOptionPane.showMessageDialog(null, "Se elimino correctamente el Alumno");
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar, error: " +e.toString());
+        }
+    }
 }

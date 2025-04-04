@@ -73,8 +73,18 @@ public class FormAlumno extends javax.swing.JFrame {
         });
 
         btnmodificar.setText("Modificar");
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
 
         btneliminar.setText("Eliminar");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
 
         btnlimpiar.setText("Limpiar");
 
@@ -210,6 +220,20 @@ public class FormAlumno extends javax.swing.JFrame {
         objetoAlumnos.SeleccionarAlumno(tbTotalAlumnos, txtid, txtnombre, txtapellido);
         objetoAlumnos.MostrarAlumnos(tbTotalAlumnos);
     }//GEN-LAST:event_tbTotalAlumnosMouseClicked
+
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        // TODO add your handling code here:
+        CAlumnos objetoAlumnos = new CAlumnos();
+        objetoAlumnos.ModificarAlumnos(txtid, txtnombre, txtapellido);
+        objetoAlumnos.MostrarAlumnos(tbTotalAlumnos);
+    }//GEN-LAST:event_btnmodificarActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // TODO add your handling code here:
+        CAlumnos objetoAlumnos = new CAlumnos();
+        objetoAlumnos.EliminarAlumnos(txtid);
+        objetoAlumnos.MostrarAlumnos(tbTotalAlumnos);
+    }//GEN-LAST:event_btneliminarActionPerformed
 
     /**
      * @param args the command line arguments
